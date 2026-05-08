@@ -1,0 +1,110 @@
+type Time = int;
+type SearchParams = 
+ record {
+   fromDate: opt text;
+   includeDeleted: bool;
+   limit: nat;
+   page: nat;
+   searchTerm: opt text;
+   toDate: opt text;
+ };
+type PaymentMethod = 
+ variant {
+   Card;
+   Cash;
+   Online;
+   Other;
+   UPI;
+ };
+type PaymentBreakdown = 
+ record {
+   card: float64;
+   cash: float64;
+   online: float64;
+   other: float64;
+   upi: float64;
+ };
+type GuestPage = 
+ record {
+   guests: vec Guest;
+   page: nat;
+   total: nat;
+   totalPages: nat;
+ };
+type GuestInput = 
+ record {
+   address: text;
+   amountPaid: float64;
+   checkInDate: text;
+   checkInTime: text;
+   checkOutDate: text;
+   checkOutTime: text;
+   grcNumber: text;
+   guestName: text;
+   idProofImageUrl: vec text;
+   idProofNumber: text;
+   idProofType: text;
+   invoiceNumber: text;
+   notes: text;
+   numberOfGuests: nat;
+   paymentMethod: PaymentMethod;
+   phoneNumber: text;
+   purposeOfVisit: text;
+   roomNumber: text;
+   roomType: text;
+ };
+type GuestId = nat;
+type Guest = 
+ record {
+   address: text;
+   amountPaid: float64;
+   checkInDate: text;
+   checkInTime: text;
+   checkOutDate: text;
+   checkOutTime: text;
+   checkedIn: bool;
+   createdAt: Time;
+   grcNumber: text;
+   guestName: text;
+   id: GuestId;
+   idProofImageUrl: vec text;
+   idProofNumber: text;
+   idProofType: text;
+   invoiceNumber: text;
+   isDeleted: bool;
+   notes: text;
+   numberOfGuests: nat;
+   paymentMethod: PaymentMethod;
+   phoneNumber: text;
+   purposeOfVisit: text;
+   roomNumber: text;
+   roomType: text;
+   updatedAt: Time;
+ };
+type ExportFilters = 
+ record {
+   dateFrom: opt text;
+   dateTo: opt text;
+   roomNumber: opt text;
+   searchTerm: opt text;
+ };
+type DashboardStats = 
+ record {
+   paymentMethodBreakdown: PaymentBreakdown;
+   todayCheckIns: nat;
+   todayCheckOuts: nat;
+   totalGuests: nat;
+   totalRevenue: float64;
+ };
+service : {
+  addGuest: (input: GuestInput) -> (Guest);
+  deleteGuest: (id: GuestId) -> (bool);
+  getAllGuestsForExport: (filters: ExportFilters) -> (vec Guest) query;
+  getDashboardStats: () -> (DashboardStats) query;
+  getGuest: (id: GuestId) -> (opt Guest) query;
+  getGuests: (params: SearchParams) -> (GuestPage) query;
+  hardDeleteGuest: (id: GuestId) -> (bool);
+  restoreGuest: (id: GuestId) -> (bool);
+  toggleGuestCheckIn: (id: GuestId) -> (opt bool);
+  updateGuest: (id: GuestId, input: GuestInput) -> (bool);
+}

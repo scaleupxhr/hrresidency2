@@ -1,0 +1,86 @@
+// Version: 3.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type GuestId__251841337 = Nat;
+type Guest__33929938 =
+  {
+    address : Text;
+    amountPaid : Float;
+    checkInDate : Text;
+    checkInTime : Text;
+    checkOutDate : Text;
+    checkOutTime : Text;
+    checkedIn : Bool;
+    createdAt : Time__900049286;
+    grcNumber : Text;
+    guestName : Text;
+    id : GuestId__251841337;
+    idProofImageUrl : [Text];
+    idProofNumber : Text;
+    idProofType : Text;
+    invoiceNumber : Text;
+    isDeleted : Bool;
+    notes : Text;
+    numberOfGuests : Nat;
+    paymentMethod : PaymentMethod__681772231;
+    phoneNumber : Text;
+    purposeOfVisit : Text;
+    roomNumber : Text;
+    roomType : Text;
+    updatedAt : Time__900049286
+  };
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldGuest__409718593 =
+  {
+    address : Text;
+    amountPaid : Float;
+    checkInDate : Text;
+    checkInTime : Text;
+    checkOutDate : Text;
+    checkOutTime : Text;
+    checkedIn : Bool;
+    createdAt : Int;
+    grcNumber : Text;
+    guestName : Text;
+    id : Nat;
+    idProofImageUrl : Text;
+    idProofNumber : Text;
+    idProofType : Text;
+    invoiceNumber : Text;
+    isDeleted : Bool;
+    notes : Text;
+    numberOfGuests : Nat;
+    paymentMethod : OldPaymentMethod__832006779;
+    phoneNumber : Text;
+    purposeOfVisit : Text;
+    roomNumber : Text;
+    roomType : Text;
+    updatedAt : Int
+  };
+type OldPaymentMethod__832006779 = {#Card; #Cash; #Online; #Other; #UPI};
+type PaymentMethod__681772231 = {#Card; #Cash; #Online; #Other; #UPI};
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+actor ({
+  in guests : Map__605269027<Nat, OldGuest__409718593>;
+  in state : {var nextGuestId : Nat}
+}, {
+  stable guests :
+    {
+      var root : Node__46230540<GuestId__251841337, Guest__33929938>;
+      var size : Nat__490723111
+    };
+  stable state : {var nextGuestId : Nat}
+});

@@ -1,0 +1,26 @@
+{
+  "overview": "HR Residency 2 is a professional Hotel Guest Management System with a premium Red & White luxury theme. It features a secure admin panel, comprehensive guest records with ID image uploads, a live dashboard with metrics and payment tracking, guest search/filter/pagination, soft delete with trash recovery, and mobile-responsive design.",
+  "features": [
+    "Secure admin login with protected routes",
+    "Dashboard with guest metrics, revenue tracking, and payment breakdown chart",
+    "Add/Edit guest form with 19 fields including ID image upload",
+    "One-tap check-in/check-out toggle",
+    "Guest database with real-time search and pagination",
+    "Soft delete with trash recovery",
+    "Date-range filters for history",
+    "Auto-save on every field change",
+    "Stable persistent storage — data survives refresh and redeployment",
+    "Mobile-responsive Red & White luxury hotel theme"
+  ],
+  "category": "productivity",
+  "tags": [
+    "hotel",
+    "guest-management",
+    "hospitality",
+    "admin-panel",
+    "dashboard",
+    "productivity",
+    "crm"
+  ],
+  "last_updated": "2026-05-07T16:50:13.350Z"
+}
